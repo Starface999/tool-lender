@@ -15,6 +15,11 @@ app.use(express.static("public"));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+mongoose.connect(
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/tool-lender' // plug in the db name you've been using
+);
 // routes:
 
 app.get('/', function (req, res) {
@@ -22,6 +27,11 @@ app.get('/', function (req, res) {
 		res.render("library", { items : libraries });
 	});
 });
+
+// SET UP POSTS:
+app.post('/users', function (req, res) {
+	console.log
+})
 
 app.get('/api/libraries/:_id', function (req, res) {
 
@@ -56,6 +66,6 @@ app.post('/api/libraries', function (req, res) {
 	});
 });
 
-app.listen(3000, function (){
+app.listen(proccess.env.PORT || 3000, function (){
   console.log("listening on port 3000");
 });
