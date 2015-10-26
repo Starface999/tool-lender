@@ -1,0 +1,46 @@
+<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+			    <!-- Modal content-->
+				<div class="modal-content">
+					<form id="add-item-to-library">
+						<div class="modal-header">
+							<div class="row">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<div class="col-sm-6">
+									<h4 class="modal-title">Add Item to Library</h4>
+								</div>
+								<div class="col-sm-6">
+									<div class="modal-in-modal-trigger">
+										<span>log in or</span>
+											<button type="button" class="btn btn-primary" data-toggle="modal" href="#sign-up-modal">sign up</button>
+										<span>to add item.</span>
+									</div>
+								</div>
+							</div>		
+						</div>
+						<div class="modal-body">
+								<input type="hidden" name="dateRange" value="[]" id="date-range-hidden"/>
+								<label for="itemName">name of item</label>
+								<input class="form-control" type="text" style="width:350px;" name="itemName" autofocus/>
+								<label for="imgUrl">direct image url</label>
+								<input class="form-control" type="text" style="width:350px;" name="imgUrl" data-tabindex="1"/>
+								<label for="locationRoom">name of room item is located in</label>
+								<input class="form-control" type="text" style="width:350px;" name="locationRoom"/>
+								<label for="locationDescription">description of where item is</label>
+								<textarea class="form-control" rows="3" name="locationDescription"></textarea>
+								<label for="useInstructions">instructions for using item</label>
+								<textarea class="form-control" rows="8" name="useInstructions"></textarea>
+								<label for="tags">tags separated by comma</label>
+								<div class="row">
+									<div class="col-sm-6">
+										<input class="form-control" type="text" style="width:350px;" name="tags"/>
+									</div>
+								<div class="col-sm-6">
+			    					<button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Add Item</button>
+			    				</div>
+			    			</div>
+			    		</div>
+			    	</form>
+			    </div>
+			</div>
+		</div>

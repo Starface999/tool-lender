@@ -1,0 +1,97 @@
+/* Custom CSS */
+
+.scrollable {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    overflow: auto;
+}​
+
+.navbar-inner{
+    position:relative;
+    padding-left:70px;
+}
+.navbar .brand {
+	margin-left: auto;
+	margin-right: auto;
+    position: absolute;
+}
+
+#reserve-cart-items{
+  bottom: 15px;
+  position: relative;
+  top: 15px;
+}
+
+#add-items-to-library {
+	bottom: 20px;
+	position: relative;
+	top: -5px;
+}
+
+img.library-list-image{
+	padding: 5px;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+img.cart-list-image{
+	padding: 5px;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+img.item-listing-image {
+	padding: 5px;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.btn-primary {
+	background-color:#85ADAD;
+	border-color:#293D3D;
+}
+
+.library-listing {
+	outline: 1px solid #ccc;
+}
+
+.cart-item {
+	outline: 1px solid #ccc;
+}
+
+.library-listing:hover {
+	background-color: #E6E6E6;
+}
+
+.cart-item:hover {
+	background-color: #E6E6E6;
+}
+
+.content-area {
+	max-height: 95vh;
+	overflow-y: scroll;
+	background-color: #FCFCFA;
+	border: 1px solid #ccc;
+}
+
+.modal-in-modal-trigger {
+	position: relative;
+	top: -20px;
+}
+
+.modal-content {
+	padding: 20px;
+}
+
+input.form-control {
+	width: 79px;
+}
+
+br {
+    content: " " !important;
+    display: block !important;
+    margin:30px;
+}

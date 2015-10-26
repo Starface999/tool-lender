@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<% include ./_head %>
+	<body>
+
+		<% include ./_myModal %>
+		<% include ./_signUpModal %>
+
+		<nav class="navbar navbar-default navbar-fixed-top">
+
+			<div class="navbar-inner"> 
+
+				<!-- left portion of navbar -->
+
+				<div class="col-sm-4 pull-left maroon" id="library-nav">
+					<div class="row top-row">
+						<div class="col-sm-12">
+							<h3>Red Victorian Library</h3>
+						</div>
+						<div class="col-sm-6 pull-right">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Items to Library</button>
+						</div>
+					</div>
+					<div class="row middle-row">
+					</div>
+					<div class="row bottom-row">
+					</div>
+
+				</div>
+
+				<!-- middle portion of navbar -->
+				<div class="col-sm-5 gray" id="your-cart-nav">
+					<a class="brand" id="logo" href="index" title="a better way to lend"><img src="http://i.imgur.com/oRwQnG8.png"></a>
+				</div>
+
+				<!-- right portion of navbar -->
+
+				<div class="col-sm-3 gray" id="your-cart-nav">
+					<div class="row top-row">
+						<div class="col-sm-5">
+							<h3>Your Cart</h3>
+						</div>
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-primary" id="reserve-cart-items">Reserve Cart Items></button>
+						</div>
+					</div>
+					<div class="row middle-row">
+						<div class="form-reservation-time">
+							<div class="col-sm-5">
+								<div class='input-group date' id='datetimepicker1'>
+									<input type='text' placeholder="From" class="form-control" />
+									<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+							<div class="col-sm-5">
+								<div class='input-group date' id='datetimepicker1'>
+									<input type='text' placeholder="To" class="form-control" />
+									<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row bottom-row">
+					</div>
+				</div>
+
+		  	</div>
+
+		</nav>
+
+		<br>
+		<br>
+		<br>
+		<div class="container">
+
+
+			<!-- LIBRARY -->
+
+			<div class="col-sm-4 content-area" id="library-items-display">
+
+				<hr>
+				<hr>
+				<% for (var i = 0; i<items.length; i++) { %>
+					<div class="row library-listing" data-id="<%=items[i]._id%>">
+						<div class="col-sm-4">
+							<img class="library-list-image" src="<%=items[i].imgUrl%>">
+						</div>
+						<div class="col-sm-8">
+							<span><h4><%=items[i].itemName%></h4></span>
+							<span><strong>Unavailable on:</strong></span>
+							<ul class="unavailable-on">
+								<% for (var a = 0; a<items[i].dateRange.length; a++) { %>
+								<li><%= items[i].dateRange[a].from + "-" + items[i].dateRange[a].to %></li>
+								<% } %>
+							</ul>
+							<span><strong>Location:</strong><i> <%= items[i].locationRoom %></i></span>
+							<p id="location-on"><%= items[i].locationDescription %></p>
+						</div>
+					</div>
+				<% } %>
+			</div>
+		
+			<!-- ITEM DISPLAY -->
+			<div class="col-sm-5 content-area">
+					<hr>
+					<hr>
+					<div class="row item-listing" id="item-display">
+						
+					</div>
+			</div>
+			
+			<!-- CART -->
+
+
+						<div class="col-sm-3 content-area" id="your-cart-display">
+				
+				<hr>
+				<hr>
+				<% for (var i = 0; i<items.length; i++) { %>
+				<div class="row cart-item">
+					<div class="col-sm-4">
+						<img class="cart-list-image" src="<%=items[i].imgUrl%>">
+					</div>
+					<div class="col-sm-8">
+						<span><h4><%=items[i].itemName%></h4></span>
+						<span><strong>Location:</strong><i> <%=items[i].locationRoom%></i></span>
+					</div>
+				</div>
+				<% } %>
+			</div>
+
+
+
+		</div>
+
+	</body>
+</html>
+<!-- http://i.imgur.com/O7mY8MP.png -->
