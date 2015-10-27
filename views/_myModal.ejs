@@ -2,22 +2,22 @@
 			<div class="modal-dialog">
 			    <!-- Modal content-->
 				<div class="modal-content">
+					<div class="modal-header">
+						<div class="row">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<div class="col-sm-6">
+								<h4 class="modal-title">Add Item to Library</h4>
+							</div>
+							<div class="col-sm-6">
+								<div class="modal-in-modal-trigger">
+									<span>log in or</span>
+										<button type="button" class="btn btn-primary" data-toggle="modal" href="#sign-up-modal">sign up</button>
+									<span>to add item.</span>
+								</div>
+							</div>
+						</div>		
+					</div>
 					<form id="add-item-to-library">
-						<div class="modal-header">
-							<div class="row">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<div class="col-sm-6">
-									<h4 class="modal-title">Add Item to Library</h4>
-								</div>
-								<div class="col-sm-6">
-									<div class="modal-in-modal-trigger">
-										<span>log in or</span>
-											<button type="button" class="btn btn-primary" data-toggle="modal" href="#sign-up-modal">sign up</button>
-										<span>to add item.</span>
-									</div>
-								</div>
-							</div>		
-						</div>
 						<div class="modal-body">
 								<input type="hidden" name="dateRange" value="[]" id="date-range-hidden"/>
 								<label for="itemName">name of item</label>
@@ -29,7 +29,7 @@
 								<label for="locationDescription">description of where item is</label>
 								<textarea class="form-control" rows="3" name="locationDescription"></textarea>
 								<label for="useInstructions">instructions for using item</label>
-								<textarea class="form-control" rows="8" name="useInstructions"></textarea>
+								<textarea class="form-control" rows="6" name="useInstructions"></textarea>
 								<label for="tags">tags separated by comma</label>
 								<div class="row">
 									<div class="col-sm-6">

@@ -1,5 +1,14 @@
 /* Custom CSS */
 
+body {
+	background-image: url(http://i.imgur.com/AJiF2UM.jpg);
+	background-repeat: repeat;
+}
+
+.navbar {
+	background-color: #A3A375;
+}
+
 .scrollable {
     position: absolute;
     top: 10px;

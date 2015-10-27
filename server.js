@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 // serve js & css files
 app.use(express.static("public"));
 // body parser config to accept our datatypes
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // routes:
 
@@ -39,9 +40,9 @@ app.get('/api/libraries/:_id', function (req, res) {
 
 });
 
-app.post('/libraries', function (req, res) {
+app.post('/', function (req, res) {
 	var newItem = req.body;
-	libraries.push(newItem);
+	items.push(newItem);
 	res.status(200).json(newItem);
 });
 
