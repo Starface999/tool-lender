@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 // serve js & css files
 app.use(express.static("public"));
 // body parser config to accept our datatypes
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // routes:
@@ -40,24 +41,32 @@ app.get('/api/libraries/:_id', function (req, res) {
 
 });
 
-app.post('/', function (req, res) {
-	var newItem = req.body;
-	items.push(newItem);
-	res.status(200).json(newItem);
+app.post('/libraries', function (req, res) {
+	console.log(req.body);
+	db.Library.create(req.body, function (err, newItem) {
+		if (err) {
+			console.log(newItem);
+			res.send(403, err);
+		} else {
+			console.log(newItem);
+			res.send(201, { newItem : newItem });
+		}
+
+	});
 });
 
-app.post('/api/libraries', function (req, res) {
-	//create libraries in the database
-	// libraries scheme information and and callback
-	db.Library.create(req.body, function(err, library) {
-		//if there is an error, send it as json
-		if (err) {
-			res.json(err);
-		} else {
-			//what to do when library is made:
-			console.log(library);
-			res.json(library);
-		}
+app.delete('/libraries/:id', function (req, res) {
+	db.Library.findById(req.params.id).exec(function (err, newItem) {
+		newItem.remove();
+		res.status(200).json({});
+	});
+});
+
+app.put('/libraries/:id', function (req, res) {
+	db.Library.findById(req.params.id).exec(function (err, newItem) {
+		var varFrom = req.body.from;
+		var varTo = req.body.to;
+		newItem.update({ dateRange : [{ from : varFrom }, { to : varTo }] });
 	});
 });
 

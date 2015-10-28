@@ -11,7 +11,7 @@ $(document).ready(function(){
 			'</div>'+
 			'<div class="col-sm-8">'+
 				'<span><h4>'+item.itemName+'</h4></span>'+
-				'<span><strong>Location:</strong><i>'+item.locationRoom+'</i></span>'+
+				'<span><strong>Location: </strong><i>'+item.locationRoom+'</i></span>'+
 			'</div>'+
 		'</div>';
 	}
@@ -46,43 +46,65 @@ $(document).ready(function(){
 		return unavailableArr;
 	}
 
-$("#add-item-to-library").submit(function (e) {
-	e.preventDefault();
-	var addedItem = $(this).serialize();
-
-	$.post('/', addedItem, function (data) {
-		console.log(data);
-		$("#add-item-to-library")[0].reset();
+	$("body").on('submit', '#add-item-to-library', function (e) {
+		e.preventDefault();
+		console.log("form submitted");
+		var addedItem = $(this).serialize();
+		console.log(addedItem);
+	
+		$.post('/libraries', addedItem)
+			.success(function (data) {
+			console.log(data);
+			$("#add-item-to-library")[0].reset();
+			});
+		$(function () {
+			$('#myModal').modal('toggle');
+		});
 	});
-});
 
-$(".library-listing").on('click', function (e) {
-	e.preventDefault();
-	console.log("clicking worked");
-	console.log($(this));
-	var libraryId = $(this).data('id');
-	$.get("/api/libraries/"+libraryId, function (fullData) {
-		console.log(fullData);
-		var libraryString = makeHTMLString(fullData);
-		var unavailableString = getUnavailable(fullData);
-		$("#item-display").html(libraryString);
-		$("#unavailable-list").html(unavailableString);
-		$("#add-to-cart").on('click', function (e) {
-			e.preventDefault();
-			console.log("add to cart click worked");
-			var libraryString = makeCartString(fullData);
-			var currentId = fullData._id;
-			console.log(currentId);
-			if ($('#your-cart-display').find('#'+currentId).length<1)
-			{
-				$("#your-cart-display").append(libraryString);
-			} else {
-				alert("item is already in cart!");
+	$(".library-listing").on('click', function (e) {
+		e.preventDefault();
+		console.log("clicking worked");
+		console.log($(this));
+		var libraryId = $(this).data('id');
+		$.get("/api/libraries/"+libraryId, function (fullData) {
+			console.log(fullData);
+			var libraryString = makeHTMLString(fullData);
+			var unavailableString = getUnavailable(fullData);
+			$("#item-display").html(libraryString);
+			$("#unavailable-list").html(unavailableString);
+			$("#add-to-cart").on('click', function (e) {
+				e.preventDefault();
+				console.log("add to cart click worked");
+				var libraryString = makeCartString(fullData);
+				var currentId = fullData._id;
+				console.log(currentId);
+				if ($('#your-cart-display').find('#'+currentId).length<1)
+				{
+					$("#your-cart-display").append(libraryString);
+				} else {
+					alert("item is already in cart!");
+				}
+			});
+		});
+	});
+
+	
+
+	$(".library-listing").on('click', ".close", function (e) {
+		e.preventDefault();
+
+		var itemId = $(this).attr("data-id");
+
+		$.ajax({
+			url: '/libraries/' + itemId,
+			type: 'DELETE',
+			success: function(result) {
+				console.log('hi mom');
+				console.log(this);
+				$('div.library-listing[data-id='+itemId+']').remove();
 			}
 		});
 	});
-});
-
-
 
 });

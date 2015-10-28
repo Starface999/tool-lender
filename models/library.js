@@ -7,7 +7,8 @@ var LibrarySchema = mongoose.Schema({
 	dateRange : [{from: String, to: String}],
 	locationRoom : String,
 	locationDescription : String,
-	useInstructions : String
+	useInstructions : String,
+	tags: []
 });
 
 var Library = mongoose.model('Library', LibrarySchema);

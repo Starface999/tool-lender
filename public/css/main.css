@@ -5,8 +5,31 @@ body {
 	background-repeat: repeat;
 }
 
+h3 {
+	font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
+	font-style: normal;
+	color: #3D3D29;
+	font-variant: normal;
+	font-weight: 500;
+}
+
+.collapse {
+	max-width: 500px;
+	background-color: #FCFCFA;
+	position: absolute !important;
+	z-index: 1;
+	padding: 20px;
+	outline: 1px solid #ccc;
+}
+
+.datechoice {
+	position: relative;
+	top: 10px;
+}
+
 .navbar {
-	background-color: #A3A375;
+	background-image: url("http://i.imgur.com/U75uaLM.jpg");
+	background-repeat: repeat-x;
 }
 
 .scrollable {

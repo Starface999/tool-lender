@@ -3,7 +3,47 @@
 	<% include ./_head %>
 	<body>
 
-		<% include ./_myModal %>
+		<div id="demo" class="collapse">
+		Some text..
+		</div>
+
+
+		<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<form id="add-item-to-library">
+		<div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		    	<div class="modal-header">
+		    	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		    	        <h4 class="modal-title">Modal Header</h4>
+		    	      </div>
+		      <form id="add-item-to-library">
+									<input type="hidden" name="dateRange" value="" id="date-range-hidden"/>
+									<label for="itemName">name of item</label>
+									<input class="form-control" type="text" style="width:350px;" name="itemName" autofocus/>
+									<label for="imgUrl">direct image url</label>
+									<input class="form-control" type="text" style="width:350px;" name="imgUrl" data-tabindex="1"/>
+									<label for="locationRoom">name of room item is located in</label>
+									<input class="form-control" type="text" style="width:350px;" name="locationRoom"/>
+									<label for="locationDescription">description of where item is</label>
+									<textarea class="form-control" rows="3" name="locationDescription"></textarea>
+									<label for="useInstructions">instructions for using item</label>
+									<textarea class="form-control" rows="6" name="useInstructions"></textarea>
+									<label for="tags">tags separated by comma</label>
+									<div class="row">
+										<div class="col-sm-6">
+											<input class="form-control" type="text" style="width:350px;" name="tags"/>
+										</div>
+									<div class="col-sm-6">
+				    					<input type="submit" class="btn btn-primary pull-right" value="Add Item">
+				    				</div>
+				    			</div>
+				    		</form>
+		   </div>
+	    </div>
+    </div>
+
 		<% include ./_signUpModal %>
 
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -18,7 +58,7 @@
 							<h3>Red Victorian Library</h3>
 						</div>
 						<div class="col-sm-6 pull-right">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Items to Library</button>
+							<div id="add-items-modal-button"><p><a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Items to Library</a></p></div>
 						</div>
 					</div>
 					<div class="row middle-row">
@@ -36,36 +76,32 @@
 				<!-- right portion of navbar -->
 
 				<div class="col-sm-3 gray" id="your-cart-nav">
-					<div class="row top-row">
-						<div class="col-sm-5">
-							<h3>Your Cart</h3>
-						</div>
-						<div class="col-sm-6">
-							<button type="button" class="btn btn-primary" id="reserve-cart-items">Reserve Cart Items></button>
-						</div>
-					</div>
+				  <form id="add-dates-to-cart-items">
 					<div class="row middle-row">
 						<div class="form-reservation-time">
 							<div class="col-sm-5">
-								<div class='input-group date' id='datetimepicker1'>
-									<input type='text' placeholder="From" class="form-control" />
-									<span class="input-group-addon">
-									<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-								</div>
+								<span class="datechoice">
+									<input type='text' name="from" placeholder="From" class="form-control" style="width:130px;" />
+								</span>
 							</div>
 							<div class="col-sm-5">
-								<div class='input-group date' id='datetimepicker1'>
-									<input type='text' placeholder="To" class="form-control" />
-									<span class="input-group-addon">
-									<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-								</div>
+								<span class="datechoice">
+									<input type='text' name="to" placeholder="To" class="form-control" style="width:130px;" />
+								</span>
+							</div>
+						</div>
+						<div class="row top-row">
+							<div class="col-sm-5">
+								<h3>Your Cart</h3>
+							</div>
+							<div class="col-sm-6">
+								<button type="submit" class="btn btn-primary" id="reserve-cart-items">Reserve Cart Items></button>
 							</div>
 						</div>
 					</div>
 					<div class="row bottom-row">
 					</div>
+				  </form>
 				</div>
 
 		  	</div>
@@ -84,13 +120,22 @@
 
 				<hr>
 				<hr>
+
+
 				<% for (var i = 0; i<items.length; i++) { %>
 					<div class="row library-listing" data-id="<%=items[i]._id%>">
 						<div class="col-sm-4">
 							<img class="library-list-image" src="<%=items[i].imgUrl%>">
 						</div>
 						<div class="col-sm-8">
-							<span><h4><%=items[i].itemName%></h4></span>
+							<div class="row">
+								<div class="col-sm-10">
+									<span><h4><%=items[i].itemName%></h4></span>
+								</div>
+								<div class="col-sm-2">
+									<button type="button" class="close" data-id="<%=items[i]._id%>">&times;</button>
+								</div>
+							</div>
 							<span><strong>Unavailable on:</strong></span>
 							<ul class="unavailable-on">
 								<% for (var a = 0; a<items[i].dateRange.length; a++) { %>
