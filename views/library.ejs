@@ -183,7 +183,7 @@
 							<span><strong>Unavailable on:</strong></span>
 							<ul class="unavailable-on">
 								<% for (var a = 0; a<items[i].dateRange.length; a+=2) { %>
-								<li><%= items[i].dateRange[a].from + " to " + items[i].dateRange[a+1].to %></li>
+								<li><%= items[i].dateRange[a] + " to " + items[i].dateRange[a] %></li>
 								<% } %>
 							</ul>
 							<span><strong>Location:</strong><i> <%= items[i].locationRoom %></i></span>
