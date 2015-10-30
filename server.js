@@ -4,8 +4,10 @@
 var express = require("express"),
     app = express(),
     path = require("path"),
-    bodyParser = require("body-parser");
+    bodyParser = require("body-parser"),
+    session = require('express-session');
 var db = require("./models");
+var User = require('./models/user.js');
 
 // CONFIG //
 // set ejs as view engine
@@ -13,9 +15,20 @@ app.set('view engine', 'ejs');
 // serve js & css files
 app.use(express.static("public"));
 // body parser config to accept our datatypes
+app.use(session({
+	saveUninitialized: true,
+	resave: true,
+	secret: 'SuperSecretCookie',
+	cookie: { maxAge : 600000 }
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
+
 // routes:
 
 app.get('/', function (req, res) {
@@ -62,11 +75,48 @@ app.delete('/libraries/:id', function (req, res) {
 	});
 });
 
+app.post('/users', function (req, res) {
+	var user = req.body;
+	User.createSecure(user.email, user.password, function (err, user) {
+		req.session.userId = user._id;
+		req.session.user = user;
+		res.json({ user : user, msg: "successfuly created user"});
+	});
+});
+
+app.post('/login', function (req, res) {
+	var user = req.body;
+	User.authenticate(user.email, user.password, function (err, user) {
+		if (err) { console.log("there was an error: ", err); }
+		req.session.userId = user._id;
+		req.session.user = user;
+		res.json(user);
+	});
+});
+
+app.get('/current-user', function (req, res) {
+	res.json({ user : req.session.user });
+});
+
+app.get('/logout', function (req, res) {
+	req.session.userId = null;
+	req.session.user = null;
+
+	res.json({ msg : 'user logged out' });
+});
+
 app.put('/libraries/:id', function (req, res) {
+	var varFrom = req.body.from;
+	var varTo = req.body.to;
+	console.log(req.body);
+
 	db.Library.findById(req.params.id).exec(function (err, newItem) {
-		var varFrom = req.body.from;
-		var varTo = req.body.to;
-		newItem.update({ dateRange : [{ from : varFrom }, { to : varTo }] });
+		//use this code to clear dateRange:
+		//newItem.dateRange = [];
+		newItem.dateRange.push({ from : varFrom }, { to : varTo });
+		newItem.save();
+		console.log(newItem);
+		res.send('updated!');
 	});
 });
 

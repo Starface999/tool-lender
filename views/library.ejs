@@ -8,43 +8,78 @@
 		</div>
 
 
+
+			<!-- Modal -->
+		<div id="signUp" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			    	<div class="modal-header">
+			    	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+			    	    <h4 class="modal-title">Sign Up</h4>
+			    	</div>
+					<div>
+						<% include ./_signup.ejs %>
+					</div>
+			   	</div>
+		    </div>
+	    </div>
+
+
+
+	    		<!-- Modal -->
+	    <div id="logIn" class="modal fade" role="dialog">
+	    	<div class="modal-dialog">
+	    	    <!-- Modal content-->
+	    	    <div class="modal-content">
+	    	    	<div class="modal-header">
+	    	    	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    	    	    <h4 class="modal-title">Log In</h4>
+	    	    	</div>
+	    			<div>
+	    				<% include ./_login.ejs %>
+	    			</div>
+	    	   	</div>
+	        </div>
+	       </div>
+
+
+
 		<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
-		<form id="add-item-to-library">
 		<div class="modal-dialog">
 		    <!-- Modal content-->
 		    <div class="modal-content">
 		    	<div class="modal-header">
-		    	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		    	        <h4 class="modal-title">Modal Header</h4>
-		    	      </div>
-		      <form id="add-item-to-library">
-									<input type="hidden" name="dateRange" value="" id="date-range-hidden"/>
-									<label for="itemName">name of item</label>
-									<input class="form-control" type="text" style="width:350px;" name="itemName" autofocus/>
-									<label for="imgUrl">direct image url</label>
-									<input class="form-control" type="text" style="width:350px;" name="imgUrl" data-tabindex="1"/>
-									<label for="locationRoom">name of room item is located in</label>
-									<input class="form-control" type="text" style="width:350px;" name="locationRoom"/>
-									<label for="locationDescription">description of where item is</label>
-									<textarea class="form-control" rows="3" name="locationDescription"></textarea>
-									<label for="useInstructions">instructions for using item</label>
-									<textarea class="form-control" rows="6" name="useInstructions"></textarea>
-									<label for="tags">tags separated by comma</label>
-									<div class="row">
-										<div class="col-sm-6">
-											<input class="form-control" type="text" style="width:350px;" name="tags"/>
-										</div>
-									<div class="col-sm-6">
-				    					<input type="submit" class="btn btn-primary pull-right" value="Add Item">
-				    				</div>
-				    			</div>
-				    		</form>
+		    	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+		    	    <h4 class="modal-title">Add Item</h4>
+		    	</div>
+		    	<form id="add-item-to-library">
+					<input type="hidden" name="dateRange" value="" id="date-range-hidden"/>
+					<label for="itemName">name of item</label>
+					<input class="form-control" type="text" style="width:350px;" name="itemName" autofocus/>
+					<label for="imgUrl">direct image url</label>
+					<input class="form-control" type="text" style="width:350px;" name="imgUrl" data-tabindex="1"/>
+					<label for="locationRoom">name of room item is located in</label>
+					<input class="form-control" type="text" style="width:350px;" name="locationRoom"/>
+					<label for="locationDescription">description of where item is</label>
+					<textarea class="form-control" rows="3" name="locationDescription"></textarea>
+					<label for="useInstructions">instructions for using item</label>
+					<textarea class="form-control" rows="6" name="useInstructions"></textarea>
+					<label for="tags">tags separated by comma</label>
+					<div class="row">
+					<div class="col-sm-6">
+						<input class="form-control" type="text" style="width:350px;" name="tags"/>
+					</div>
+					<div class="col-sm-6">
+						<input type="submit" class="btn btn-primary pull-right" value="Add Item">
+					</div>
+					</div>
+				</form>
 		   </div>
 	    </div>
     </div>
 
-		<% include ./_signUpModal %>
 
 		<nav class="navbar navbar-default navbar-fixed-top">
 
@@ -55,10 +90,10 @@
 				<div class="col-sm-4 pull-left maroon" id="library-nav">
 					<div class="row top-row">
 						<div class="col-sm-12">
-							<h3>Red Victorian Library</h3>
+							<h3 class="pull-right">Red Victorian Library</h3>
 						</div>
 						<div class="col-sm-6 pull-right">
-							<div id="add-items-modal-button"><p><a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Items to Library</a></p></div>
+							<div class="logged-in" style="display:none;" id="add-items-modal-button"><p><a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Items to Library</a></p></div>
 						</div>
 					</div>
 					<div class="row middle-row">
@@ -71,6 +106,15 @@
 				<!-- middle portion of navbar -->
 				<div class="col-sm-5 gray" id="your-cart-nav">
 					<a class="brand" id="logo" href="index" title="a better way to lend"><img src="http://i.imgur.com/oRwQnG8.png"></a>
+					<div class="row">
+						<div class="not-logged-in" style="display:none;" id="add-items-modal-button"><p><a data-toggle="modal" href="#signUp" class="btn btn-primary pull-right">sign up</a></p></div>
+					</div>
+					<div class="row">
+						<div class="not-logged-in" style="display:none;" id="add-items-modal-button"><p><a data-toggle="modal" href="#logIn" class="btn btn-primary pull-right">log in</a></p></div>
+					</div>
+					<div class="row">
+						<div class="logged-in" style="display:none;" id="log-out-modal-button"><p><a class="btn btn-primary pull-right">log out</a></p></div>
+					</div>
 				</div>
 
 				<!-- right portion of navbar -->
@@ -81,21 +125,21 @@
 						<div class="form-reservation-time">
 							<div class="col-sm-5">
 								<span class="datechoice">
-									<input type='text' name="from" placeholder="From" class="form-control" style="width:130px;" />
+									<input type='date' id="fromDate" name="from" placeholder="From" class="form-control" style="width:130px;" />
 								</span>
 							</div>
 							<div class="col-sm-5">
 								<span class="datechoice">
-									<input type='text' name="to" placeholder="To" class="form-control" style="width:130px;" />
+									<input type='date' id="toDate" name="to" placeholder="To" class="form-control" style="width:130px;" />
 								</span>
 							</div>
 						</div>
 						<div class="row top-row">
 							<div class="col-sm-5">
-								<h3>Your Cart</h3>
+								<h3 class="pull-right">Your Cart</h3>
 							</div>
 							<div class="col-sm-6">
-								<button type="submit" class="btn btn-primary" id="reserve-cart-items">Reserve Cart Items></button>
+								<button type="submit" class="btn btn-primary logged-in" style="display:none;" id="reserve-cart-items">Reserve Cart Items></button>
 							</div>
 						</div>
 					</div>
@@ -133,13 +177,13 @@
 									<span><h4><%=items[i].itemName%></h4></span>
 								</div>
 								<div class="col-sm-2">
-									<button type="button" class="close" data-id="<%=items[i]._id%>">&times;</button>
+									<button type="button" class="close logged-in" style="display:none;" data-id="<%=items[i]._id%>">&times;</button>
 								</div>
 							</div>
 							<span><strong>Unavailable on:</strong></span>
 							<ul class="unavailable-on">
-								<% for (var a = 0; a<items[i].dateRange.length; a++) { %>
-								<li><%= items[i].dateRange[a].from + "-" + items[i].dateRange[a].to %></li>
+								<% for (var a = 0; a<items[i].dateRange.length; a+=2) { %>
+								<li><%= items[i].dateRange[a].from + " to " + items[i].dateRange[a+1].to %></li>
 								<% } %>
 							</ul>
 							<span><strong>Location:</strong><i> <%= items[i].locationRoom %></i></span>

@@ -1,4 +1,4 @@
-<form id="login-form" class="form-horizontal" action='' method="POST">
+<form id="signup-form" class="form-horizontal" action='' method="POST">
   <fieldset>
  
     <div class="control-group">
@@ -21,26 +21,18 @@
  
     <div class="control-group">
       <!-- Password -->
-      <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+      <label class="control-label"  for="confirm">Password (Confirm)</label>
       <div class="controls">
-        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="form-control" style="width:350px;">
+        <input type="password" id="password_confirm" name="confirm" placeholder="" class="form-control" style="width:350px;">
         <p class="help-block">Please confirm password</p>
       </div>
     </div>
 
     <div class="control-group">
-      <!-- Profile Pic -->
-      <label class="control-label" for="profilePic">Profile Picture (direct url)</label>
-      <div class="controls">
-        <input type="text" id="profile-pic" name="profilePic" placeholder="direct url only" class="form-control" style="width:350px;">
-        <p class="help-block">Please provide a direct url to profile image</p>
-      </div>
-    </div>
- 
-    <div class="control-group">
+
       <!-- Button -->
       <div class="controls">
-        <button class="btn btn-primary">Register</button>
+        <input type="submit" class="btn btn-primary pull-right" value="Sign Up!">
       </div>
     </div>
   </fieldset>

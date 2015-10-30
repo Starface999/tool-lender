@@ -4,7 +4,7 @@ var LibrarySchema = mongoose.Schema({
 	//this is where form names will be:
 	itemName : String,
 	imgUrl : String,
-	dateRange : [{from: String, to: String}],
+	dateRange : [],
 	locationRoom : String,
 	locationDescription : String,
 	useInstructions : String,
