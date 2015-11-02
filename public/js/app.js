@@ -14,7 +14,7 @@ $(document).ready(function(){
 		'<span><strong>Location: </strong><i>'+item.locationRoom+'</i></span>'+
 		'</div>'+
 		'<div class="col-sm-2">'+
-		'<button type="button" class="close" id="cart-item<%=count++%>">&times;</button>'+
+		'<button type="button" class="close" id="cart-item'+item._id+'">&times;</button>'+
 		'</div>'+
 		'</div>';
 	}
@@ -89,6 +89,12 @@ $(document).ready(function(){
 				} else {
 					alert("item is already in cart!");
 				}
+
+				$(".cart-item").on('click', ".close", function (e) {
+					e.preventDefault();
+					console.log("Delete Cart Btn Clicked ");
+					$(this).closest(".row").remove();
+				});
 			});
 		});
 	});
@@ -122,11 +128,6 @@ $(document).ready(function(){
 		location.reload();
 	});
 
-	$(".cart-item").on('click', ".close", function (e) {
-		e.preventDefault();
-		var itemId = $(this).attr("data-id");
-		$('div.cart-item[data-id='+itemId+']').remove();
-	});
 
 
 	$(".library-listing").on('click', ".close", function (e) {
