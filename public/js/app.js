@@ -77,13 +77,17 @@ $(document).ready(function(){
 			var unavailableString = getUnavailable(fullData);
 			$("#item-display").html(libraryString);
 			$("#unavailable-list").html(unavailableString);
+			var specificItemInstance = [];
 			$("#add-to-cart").on('click', function (e) {
 				e.preventDefault();
 				console.log("add to cart click worked");
 				var libraryString = makeCartString(fullData);
 				var currentId = fullData._id;
 				console.log(currentId);
-				if ($('#your-cart-display').find('#'+currentId).length<1)
+				specificItemInstance.push($('#your-cart-display').find('#'+currentId));
+				// console.log(test);
+				console.log(specificItemInstance.length);
+				if (specificItemInstance.length<=1)
 				{
 					$("#your-cart-display").append(libraryString);
 				} else {
